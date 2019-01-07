@@ -7,7 +7,7 @@ export default class BaseInput extends Component
         this.state = {
             currencyOptions: this.props.currencyOptions,
             amount: 0,
-            baseCurrency: 'USD'
+            baseCurrency: this.props.selectedCurrency
         };
 
         this.handleCurrencyChange = this.handleCurrencyChange.bind(this);
@@ -51,8 +51,8 @@ export default class BaseInput extends Component
     render() {
         if(this.props.skeleton === true){
             return  (
-            <div className="case-input skeleton">
-            </div>
+                <div className="case-input skeleton">
+                </div>
             )
         } else {
             let op = Object.keys(this.state.currencyOptions)
@@ -61,12 +61,12 @@ export default class BaseInput extends Component
                 ops.push(<option key={i} value={op[i]}>{op[i]}</option>)
             }
             return (
-            <div className="case-input">
-                <select value="USD" name="baseCurrency" id="baseCurrencySelect" onChange={this.handleCurrencyChange}>
-                    {ops}
-                </select>
-                <input type="number" value={this.state.amount} onChange={this.handleAmountChange}/>
-            </div>
+                <div className="case-input">
+                    <select defaultValue={this.state.baseCurrency} name="baseCurrency" id="baseCurrencySelect" onChange={this.handleCurrencyChange}>
+                        {ops}
+                    </select>
+                    <input type="number" value={this.state.amount} onChange={this.handleAmountChange}/>
+                </div>
             )
         }
 
