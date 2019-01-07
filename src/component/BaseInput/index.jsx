@@ -1,76 +1,28 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react';
+import CurrencySelector from '../CurrencySelector'
 
-export default class BaseInput extends Component
-{
-    constructor(props) {
-        super(props)
-        this.state = {
-            currencyOptions: this.props.currencyOptions,
-            amount: 0,
-            baseCurrency: this.props.selectedCurrency
-        };
+class BaseInput extends Component 
+{ 
 
-        this.handleCurrencyChange = this.handleCurrencyChange.bind(this);
+    constructor(props){ 
+        super(props);
         this.handleAmountChange = this.handleAmountChange.bind(this);
+        this.handleBaseCurrencyChange = this.handleBaseCurrencyChange.bind(this);
     }
 
-    componentDidUpdate(){
-        if(this.state.currencyOptions !== this.props.currencyOptions){
-            this.setState({
-                currencyOptions: this.props.currencyOptions,
-                amount: this.state.amount,
-                baseCurrency: this.state.baseCurrency
-            })
-        }
+    handleAmountChange(event) {
+        this.props.onAmountChange(event.target.value);
     }
 
-    componentDidMount(){
-        this.setState({
-            currencyOptions: this.props.currencyOptions,
-            amount: this.state.amount,
-            baseCurrency: this.state.baseCurrency
-        });
+    handleBaseCurrencyChange(newCurrency) {
+        this.props.onBaseCurrencyChange(newCurrency);
     }
 
-    handleCurrencyChange(event){
-        this.setState({
-            currencyOptions: this.state.currencyOptions,
-            amount: this.state.amount,
-            baseCurrency: event.target.value
-        })
+    render () { 
+        return (<div className="BaseInput">
+            <CurrencySelector selected={this.props.currency} currencies={this.props.currencies} onBaseCurrencyChange={this.handleBaseCurrencyChange}/>
+            <input type="number" value={this.props.amount} onChange={this.handleAmountChange}/>
+        </div>)
     }
-
-    handleAmountChange(event){
-        this.setState({
-            currencyOptions: this.state.currencyOptions,
-            amount: event.target.value,
-            baseCurrency: this.state.baseCurrency
-        })
-    }
-
-    render() {
-        if(this.props.skeleton === true){
-            return  (
-                <div className="case-input skeleton">
-                </div>
-            )
-        } else {
-            let op = Object.keys(this.state.currencyOptions)
-            let ops = [];
-            for(let i = 0; i < op.length; i++){
-                ops.push(<option key={i} value={op[i]}>{op[i]}</option>)
-            }
-            return (
-                <div className="case-input">
-                    <select defaultValue={this.state.baseCurrency} name="baseCurrency" id="baseCurrencySelect" onChange={this.handleCurrencyChange}>
-                        {ops}
-                    </select>
-                    <input type="number" value={this.state.amount} onChange={this.handleAmountChange}/>
-                </div>
-            )
-        }
-
-    }
-
-
-} 
+}
+export default BaseInput;
