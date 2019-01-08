@@ -22,9 +22,9 @@ export const updateBaseCurrency = (currency) => {
         currency
     }
 }  
-export const updateConvertToCurrency = (currency) => {
+export const updateConversionCurrency = (currency) => {
     return {
-        type: "UPDATE_CONVERT_TO_CURRENCY",
+        type: "UPDATE_CONVERSION_CURRENCY",
         currency
     }
 }  

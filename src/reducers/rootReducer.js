@@ -16,7 +16,9 @@ const rootReducer = (state, action) => {
         return {
             ...state,
             baseCurrency: state.convertTo,
-            convertTo: state.baseCurrency
+            convertTo: state.baseCurrency,
+            amount: state.result,
+            result: state.amount
         }
     }
 
@@ -32,6 +34,14 @@ const rootReducer = (state, action) => {
         return {
             ...state,
             baseCurrency: action.currency
+        }
+    }
+    
+
+    if(action.type === "UPDATE_CONVERSION_CURRENCY"){
+        return {
+            ...state,
+            convertTo: action.currency
         }
     }
 

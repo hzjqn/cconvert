@@ -19,7 +19,7 @@ class CurrencySelector extends Component
     }
 
     handleChange(event) {
-        this.props.onBaseCurrencyChange(event.target.value);
+        this.props.onChange(event.target.value);
     }
 
     render(){

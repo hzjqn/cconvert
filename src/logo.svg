@@ -6,6 +6,7 @@
 	.st0{fill:#FAEE00;}
 	.st1{fill:#FFB51E;}
 	.st2{fill:#FF4A40;}
+	.st3{fill:#1093FF;}
 </style>
 <g>
 	<g>
@@ -31,4 +32,5 @@
 		</g>
 	</g>
 </g>
+<polygon class="st3" points="16.3,19.9 16.3,25.1 20.8,27.7 25.3,25.1 25.3,19.9 20.8,17.3 "/>
 </svg>

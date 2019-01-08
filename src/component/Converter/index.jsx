@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { swapCurrencies, updateRates, updateAmount, updateBaseCurrency, updateConversionResult } from '../../actions';
+import { swapCurrencies, updateRates, updateAmount, updateBaseCurrency, updateConversionCurrency, updateConversionResult } from '../../actions';
 import BaseInput from '../BaseInput';
+import ConversionInput from '../ConversionInput';
+import logo from '../../logo.svg'
 
 class Converter extends Component
 {
@@ -10,7 +12,7 @@ class Converter extends Component
     }
 
     componentDidUpdate(){
-        this.convert();
+        this.convert(); 
     }
 
     convert() {
@@ -18,7 +20,7 @@ class Converter extends Component
         const convertTo = this.props.rates[this.props.convertTo];
         const amount = this.props.amount;
 
-        this.props.updateConversionResult(amount * (1/baseCurrency) * convertTo);
+        this.props.updateConversionResult(Number(amount * (1/baseCurrency) * convertTo).toFixed(4));
     }
 
     getApiData(){
@@ -38,17 +40,20 @@ class Converter extends Component
     }
 
     render() {
-        const { fetched, rates, baseCurrency } = this.props;
+        const { fetched, rates, baseCurrency, result, convertTo } = this.props;
         if(fetched === true){
             console.log(rates)
             return (
                 <main>
+                    <header>
+                        <figure className="iso">
+                            <img src={logo} alt="cConvert Logo"/>
+                        </figure>
+                        <h1 class="logo">cConvert</h1>
+                    </header>
                     <BaseInput currency={baseCurrency} currencies={rates} amount={this.props.amount} onAmountChange={this.props.updateAmount} onBaseCurrencyChange={this.props.updateBaseCurrency}/>
                     <button onClick={this.handleClick.bind(this)}>SWAP</button>
-                    <div>
-                        <h3>Result</h3>
-                        <span>{this.props.convertTo} : {this.props.result}</span>                    
-                    </div>
+                    <ConversionInput currency={convertTo} currencies={rates} amount={result} onConversionCurrencyChange={this.props.updateConversionCurrency}/>
                 </main>
             );
         } else {
@@ -81,6 +86,9 @@ const mapDispatchToProps = (dispatch) => {
         },
         updateBaseCurrency: (newCurrency) => {
             dispatch(updateBaseCurrency(newCurrency));
+        },
+        updateConversionCurrency: (newCurrency) => {
+            dispatch(updateConversionCurrency(newCurrency));
         },
         updateConversionResult: (newResult) => {
             dispatch(updateConversionResult(newResult));
