@@ -42,17 +42,16 @@ class Converter extends Component
     render() {
         const { fetched, rates, baseCurrency, result, convertTo } = this.props;
         if(fetched === true){
-            console.log(rates)
             return (
                 <main>
                     <header>
                         <figure className="iso">
                             <img src={logo} alt="cConvert Logo"/>
                         </figure>
-                        <h1 class="logo">cConvert</h1>
+                        <h1 className="logo">cConvert</h1>
                     </header>
                     <BaseInput currency={baseCurrency} currencies={rates} amount={this.props.amount} onAmountChange={this.props.updateAmount} onBaseCurrencyChange={this.props.updateBaseCurrency}/>
-                    <button onClick={this.handleClick.bind(this)}>SWAP</button>
+                    <button onClick={this.handleClick.bind(this)}><i className="material-icons">swap_vertical</i></button>
                     <ConversionInput currency={convertTo} currencies={rates} amount={result} onConversionCurrencyChange={this.props.updateConversionCurrency}/>
                 </main>
             );

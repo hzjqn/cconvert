@@ -9,7 +9,6 @@ class CurrencySelector extends Component
     }
 
     options(){
-        console.log(this.props.currencies);
         let options = [];
         let ops = Object.keys(this.props.currencies);
         for (let i = 0; i < ops.length; i++) {

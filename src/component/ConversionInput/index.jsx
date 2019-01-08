@@ -15,9 +15,9 @@ class ConversionInput extends Component
     }
 
     render () { 
-        return (<div className="BaseInput">
+        return (<div className="ConversionInput input-case">
             <CurrencySelector selected={this.props.currency} currencies={this.props.currencies} onChange={this.handleConversionCurrencyChange}/>
-            <span>{this.props.amount}</span>
+            <input type="number" value={this.props.amount} disabled/>
         </div>)
     }
 }

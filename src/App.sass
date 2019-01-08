@@ -1,14 +1,18 @@
 // Variables
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons')
 // Colors
 $solid_black: #1b1b1b
 $solid_white: #fefefe
-header
-    padding: 1em .5em
-    background: $solid_black
+
+main
+    padding: 1em .5em 
     display: flex
     flex-direction: column
     justify-content: center
     align-items: center
+
+header
+    margin-bottom: 3em
 
 figure.iso
     padding: 0px
@@ -20,4 +24,45 @@ figure.iso
 h1.logo
     padding: 0px
     font-size: 18px
-    color: $solid_white
+    color: $solid_black
+
+
+.input-case
+    display: flex
+    flex-direction: row
+    align-items: stretch
+    justify-content: center
+    height: 50px
+
+select
+    padding: 8px 16px
+    border: none
+    outline: none
+    border-radius: 4px 0px 0px 4px
+    box-shadow: 0 1px 2px 0px fade-out($solid_black, .71)
+
+input, input:disabled
+    padding: 8px 16px
+    border: none
+    outline: none
+    border-radius: 0px 4px 4px 0px
+    background: $solid_white
+    box-shadow: 0 1px 2px 0px fade-out($solid_black, .71)
+
+button
+    width: 48px
+    height: 48px
+    margin: 1em
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center
+    border-radius: 100%
+    border: none
+    outline: none
+    background: $solid_white
+    box-shadow: 0 1px 2px 0px fade-out($solid_black, .71)
+
+    i
+        width: 24px
+        height: 24px
