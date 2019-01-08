@@ -1,17 +1,30 @@
 // Variables
 @import url('https://fonts.googleapis.com/icon?family=Material+Icons')
+@import url('https://fonts.googleapis.com/css?family=Arimo')
+
 // Colors
 $solid_black: #1b1b1b
 $solid_white: #fefefe
+
+body
+    padding: 0px
+    margin: 0px
+    font-family: 'Helvetica Neue', 'Arimo', 'Arial', sans-serif
+    *
+        box-sizing: border-box
 
 main
     padding: 1em .5em 
     display: flex
     flex-direction: column
-    justify-content: center
     align-items: center
+    height: 85vh
 
 header
+    display: flex
+    flex-direction: column
+    justify-content: center
+    align-items: center
     margin-bottom: 3em
 
 figure.iso
@@ -25,6 +38,10 @@ h1.logo
     padding: 0px
     font-size: 18px
     color: $solid_black
+
+h2
+    font-size: 16px
+    color: lighten($solid_black, 50)
 
 
 .input-case
@@ -66,3 +83,13 @@ button
     i
         width: 24px
         height: 24px
+
+footer
+    font-size: 14px
+    color: $solid_white
+    background: $solid_black
+    height: 15vh
+    display: flex
+    flex-direction: row
+    justify-content: center
+    align-items: center

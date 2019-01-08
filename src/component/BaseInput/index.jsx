@@ -19,9 +19,12 @@ class BaseInput extends Component
     }
 
     render () { 
-        return (<div className="BaseInput input-case">
-            <CurrencySelector selected={this.props.currency} currencies={this.props.currencies} onChange={this.handleBaseCurrencyChange}/>
-            <input type="number" value={this.props.amount} onChange={this.handleAmountChange}/>
+        return (<div className="BaseInput input">
+            <h2>{this.props.label}</h2>
+            <div className="input-case">
+                <CurrencySelector selected={this.props.currency} currencies={this.props.currencies} onChange={this.handleBaseCurrencyChange}/>
+                <input type="number" value={this.props.amount} onChange={this.handleAmountChange}/>
+            </div>
         </div>)
     }
 }

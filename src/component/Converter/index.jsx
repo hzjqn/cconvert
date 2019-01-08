@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { swapCurrencies, updateRates, updateAmount, updateBaseCurrency, updateConversionCurrency, updateConversionResult } from '../../actions';
 import BaseInput from '../BaseInput';
 import ConversionInput from '../ConversionInput';
-import logo from '../../logo.svg'
 
 class Converter extends Component
 {
@@ -20,7 +19,7 @@ class Converter extends Component
         const convertTo = this.props.rates[this.props.convertTo];
         const amount = this.props.amount;
 
-        this.props.updateConversionResult(Number(amount * (1/baseCurrency) * convertTo).toFixed(4));
+        this.props.updateConversionResult(amount * (1/baseCurrency) * convertTo);
     }
 
     getApiData(){
@@ -43,23 +42,17 @@ class Converter extends Component
         const { fetched, rates, baseCurrency, result, convertTo } = this.props;
         if(fetched === true){
             return (
-                <main>
-                    <header>
-                        <figure className="iso">
-                            <img src={logo} alt="cConvert Logo"/>
-                        </figure>
-                        <h1 className="logo">cConvert</h1>
-                    </header>
-                    <BaseInput currency={baseCurrency} currencies={rates} amount={this.props.amount} onAmountChange={this.props.updateAmount} onBaseCurrencyChange={this.props.updateBaseCurrency}/>
+                <React.Fragment>
+                    <BaseInput label="From" currency={baseCurrency} currencies={rates} amount={this.props.amount} onAmountChange={this.props.updateAmount} onBaseCurrencyChange={this.props.updateBaseCurrency}/>
                     <button onClick={this.handleClick.bind(this)}><i className="material-icons">swap_vertical</i></button>
-                    <ConversionInput currency={convertTo} currencies={rates} amount={result} onConversionCurrencyChange={this.props.updateConversionCurrency}/>
-                </main>
+                    <ConversionInput label="To" currency={convertTo} currencies={rates} amount={result} onConversionCurrencyChange={this.props.updateConversionCurrency}/>
+                </React.Fragment>
             );
         } else {
             return (
-                <main>
+                <React.Fragment>
                     loading
-                </main>
+                </React.Fragment>
             )
         }
     }
