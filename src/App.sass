@@ -5,6 +5,7 @@
 // Colors
 $solid_black: #1b1b1b
 $solid_white: #fefefe
+$shade: fade-out($solid_black, .71)
 
 body
     padding: 0px
@@ -56,15 +57,36 @@ select
     border: none
     outline: none
     border-radius: 4px 0px 0px 4px
-    box-shadow: 0 1px 2px 0px fade-out($solid_black, .71)
+    box-shadow: 0px 0px 1px 0px $shade, 0 1px 2px 0px fade-out($solid_black, .71)
+    -moz-appearance: none
+    -webkit-appearance: none
+    appearance:none
 
-input, input:disabled
+option
+    background: red
+    height: 24px
+    border-bottom: 1px solid $shade
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button
+  -webkit-appearance: none
+  margin: 0
+
+
+input:not(:disabled)
     padding: 8px 16px
     border: none
     outline: none
     border-radius: 0px 4px 4px 0px
     background: $solid_white
-    box-shadow: 0 1px 2px 0px fade-out($solid_black, .71)
+    box-shadow: 0px 0px 1px 0px $shade, 0 1px 2px 0px fade-out($solid_black, .71)
+
+input:disabled
+    border: none
+    outline: none
+    background: $solid_white
+    padding: 8px 16px
+    box-shadow: 0px 0px 1px 0px $shade
 
 button
     width: 48px
